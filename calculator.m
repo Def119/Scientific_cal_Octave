@@ -9,7 +9,9 @@ function calculator()
                            'Position', [20, 640, 270, 40], ...
                            'FontSize', 12, ...
                            'HorizontalAlignment', 'right', ...
-                           'String', '0');
+                           'String', '0'), ...
+                           'BackgroundColor', [.17, .18, .24], ...
+                           'ForegroundColor', [.17, .18, .24];
 
     % Button properties
     buttonWidth = 60;
@@ -17,10 +19,14 @@ function calculator()
     buttonSpacing = 10;
     buttonXStart = 20;
     buttonYStart = 480;
+  % Define colors for different types of buttons
+    numColor = [0.8, 0.8, 1];       % Light blue for numbers
+    opColor = [1, 0.6, 0.6];        % Light red for operators
+    funcColor = [0.6, 1, 0.6];      % Light green for functions
 
     % Layout for buttons
     buttons = {
-        '7', '8', '9', '/', 'sin'
+        '7', '8', '9', '/', 'Ans'
         '4', '5', '6', '*', 'cos'
         '1', '2', '3', '-', 'tan'
         '0', '.', '=', '+', 's'
@@ -31,12 +37,14 @@ function calculator()
     % Create buttons
     for i = 1:size(buttons, 1)
         for j = 1:size(buttons, 2)
+            bgColor = funcColor; % Function buttons
             uicontrol('Style', 'pushbutton', ...
                       'String', buttons{i, j}, ...
                       'Position', [buttonXStart + (j-1)*(buttonWidth + buttonSpacing), ...
                                    buttonYStart - (i-1)*(buttonHeight + buttonSpacing), ...
                                    buttonWidth, buttonHeight], ...
                       'FontSize', 12, ...
+                      'BackgroundColor', bgColor, ...
                       'Callback', @(src, event)button_callback(buttons{i, j}, displayBox));
         end
     end

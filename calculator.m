@@ -2,42 +2,68 @@ function calculator()
     % Create a figure window for the calculator
     fig = figure('Name', 'Scientific Calculator', ...
                  'NumberTitle', 'off', ...
-                 'Position', [500, 100, 400, 600]);
+                 'Position', [400, 0, 380, 420], ...
+                 'Color',[.17, .18, .24])
+                 ;
 
     % Create a text box for the display
     displayBox = uicontrol('Style', 'edit', ...
-                           'Position', [20, 640, 270, 40], ...
-                           'FontSize', 12, ...
+                           'Position', [20, 340, 340, 50], ...
+                           'FontSize', 18, ...
                            'HorizontalAlignment', 'right', ...
-                           'String', '0'), ...
-                           'BackgroundColor', [.17, .18, .24], ...
-                           'ForegroundColor', [.17, .18, .24];
+                           'String', '0', ...
+                           'BackgroundColor', [0.54,0.71,0.935], ...
+                           'ForegroundColor', [1,1,1]);
 
     % Button properties
     buttonWidth = 60;
     buttonHeight = 40;
     buttonSpacing = 10;
     buttonXStart = 20;
-    buttonYStart = 480;
+    buttonYStart = 270;
   % Define colors for different types of buttons
     numColor = [0.8, 0.8, 1];       % Light blue for numbers
     opColor = [1, 0.6, 0.6];        % Light red for operators
     funcColor = [0.6, 1, 0.6];      % Light green for functions
+    greyColor = [0.172,0.188,0.24]
+    white = [1,1,1]
+    lightGrey = [0.2,0.2,0.22]
+    lightblue = [0.65,0.78,0.98]
+    blue = [0.54,0.71,0.935]
+    darkblue=[0.185,0.27,0.64]
+    blue2=[0.23,0.55,0.86]
+    black = [0,0,0]
+    fontColor = white
 
     % Layout for buttons
     buttons = {
         '7', '8', '9', '/', 'Ans'
-        '4', '5', '6', '*', 'cos'
-        '1', '2', '3', '-', 'tan'
-        '0', '.', '=', '+', 's'
-        'sin', 'cos', 'tan', 'Deg', 'del'
-        '(', ')', 'C', 'CE', 'del'
+        '4', '5', '6', '*', 'sin'
+        '1', '2', '3', '-', 'cos'
+        '0', '.', '=', '+', 'tan'
+        '[', ']', ';', '>', '<'
+        '(', ')', 'C', 'CE', 'Deg'
     };
 
     % Create buttons
     for i = 1:size(buttons, 1)
         for j = 1:size(buttons, 2)
-            bgColor = funcColor; % Function buttons
+            bgColor='red'
+            if ismember(buttons{i,j},{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'})
+              bgColor=greyColor;
+              fontColor=white;
+            elseif ismember(buttons{i,j}, {'+', '-', '*', '/', '(', ')','sin','cos','tan'})
+              bgColor =lightGrey;
+              fontColor=white;
+              %opColor;
+            %elseif ismember(buttons{i,j}, {'Ans','C','CE'})
+             % bgColor = []
+            elseif
+              bgColor = opColor;
+              fontColor = black;
+            end
+            %bgColor = funcColor;
+            % Function buttons
             uicontrol('Style', 'pushbutton', ...
                       'String', buttons{i, j}, ...
                       'Position', [buttonXStart + (j-1)*(buttonWidth + buttonSpacing), ...
@@ -45,6 +71,7 @@ function calculator()
                                    buttonWidth, buttonHeight], ...
                       'FontSize', 12, ...
                       'BackgroundColor', bgColor, ...
+                      'ForegroundColor',fontColor, ...
                       'Callback', @(src, event)button_callback(buttons{i, j}, displayBox));
         end
     end

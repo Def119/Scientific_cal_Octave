@@ -34,6 +34,7 @@ function calculator()
     blue2=[0.23,0.55,0.86]
     black = [0,0,0]
     fontColor = white
+    Ans = 0
 
     % Layout for buttons
     buttons = {
@@ -79,12 +80,17 @@ end
 
 function button_callback(button, displayBox)
     % Callback function for buttons
+    persistent Ans;
+    if isempty(Ans)
+      Ans=0
+   endif
     currentText = get(displayBox, 'String');
     switch button
         case '='
             % Evaluate the expression in the display
             try
                 result = eval(currentText);
+                Ans = result;
                 set(displayBox, 'String', num2str(result));
             catch
                 set(displayBox, 'String', 'Error');
@@ -114,9 +120,16 @@ function button_callback(button, displayBox)
                 end
             end
             set(displayBox, 'String', newText);
+        case 'Ans'
+            if any(strcmp(currentText, {'Error', '0'}))
+                newText = num2str(Ans);
+            else
+                newText = [currentText, num2str(Ans)];
+            end
+            set(displayBox, 'String', newText);
         otherwise
             % Append the button's text to the display
-            if strcmp(currentText, '0')
+            if any(strcmp(currentText, {'Error','0'}))
                 newText = button;
             else
                 newText = [currentText, button];

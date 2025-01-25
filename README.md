@@ -1,17 +1,18 @@
 # Scientific_cal_Octave
-
+[Github repository Link](https://github.com/Def119/Scientific_cal_Octave)
 ---
 
 #### **Introduction**
 
-This is a **Scientific Calculator** built using MATLAB/Octave's GUI functionality. It provides a wide range of features including basic arithmetic, trigonometric calculations (with degree and inverse support), factorial computation, and simple matrix operations.
+This is a **Scientific Calculator** built using MATLAB/Octave's GUI functionality using `uicontrol library`. This cal provides a wide range of features including basic arithmetic, trigonometric calculations (with degree and inverse support), boolean `&`, factorial computation, and simple matrix operations and `π` and `e` values similar to a scientific calculator.
 
 ---
 
 #### **Features**
 
 1. **Basic Arithmetic Operations**  
-   - Addition (`+`), Subtraction (`-`), Multiplication (`*`), Division (`/`), Exponentiation (`^`). And also element wise operations in matrices (`./`,`*/`,`.^`) .
+   - Addition (`+`), Subtraction (`-`), Multiplication (`*`), Division (`/`), Exponentiation (`^`). 
+   - And also element wise operations in matrices (`./`,`*/`,`.^`) .
 
 2. **Trigonometric Functions**  
    - Supported Functions:  
@@ -19,15 +20,17 @@ This is a **Scientific Calculator** built using MATLAB/Octave's GUI functionalit
      `sind`, `cosd`, `tand` (for degrees).  
    - Inverse Trigonometric Functions:  
      Use the `Inv` button before the function. For example: `asin`, `acos`, `atan`.
+     Make sure to add trigonomatric functions before adding trigonometric function relation options.
+     ex: `Inv` and `Deg`
 
 3. **Degree/Radian Switching**  
    - Click on `Deg` button to switch the trigonometric function to calculate in degrees. Has to switch function to degree everytime a function is used, Radiant is used as default in Octave.
      Ex: `sin` -> `sind` , `cos` -> `cosd` , `tan` -> `tand`  
         `sind(30)` computes sine of 30 degrees.  
-   - Ensure you add the degree mode (`d`) after inserting the trigonometric function.
+   - Ensure you add the degree mode (`d`) after inserting the trigonometric function according to octave/MATLAB syntax.
 
 4. **Factorial Function**  
-   - Use the `fac` button to insert the `factorial(` function.  
+   - Use the `fac` button to insert the `factorial(` function. Make sure to close the parenthesis before moving on from the factorial function.  
    - Works for individual numbers or as part of larger expressions.  
      Example: `5*factorial(3)` computes \( 5 \times 3! \).
 

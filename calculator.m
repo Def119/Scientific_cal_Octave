@@ -144,7 +144,7 @@ function button_callback(button, displayBox)  % Callback function for buttons
                 newText = 'factorial(';
             else
                     lastchar = currentText(max(1, end));
-                    if strcmp(lastchar,'*')
+                    if any(strcmp(lastchar, {'*', '+', '-','^','/','&'}))
                       newText = [currentText,"factorial("]
                     else
                       newText = [currentText,"*factorial("]
@@ -156,7 +156,7 @@ function button_callback(button, displayBox)  % Callback function for buttons
                 newText = 'pi';
             else
                     lastchar = currentText(max(1, end));
-                    if strcmp(lastchar,'*')
+                    if any(strcmp(lastchar, {'*', '+', '-','^','/','&'}))
                       newText = [currentText,"pi"]
                     else
                       newText = [currentText,"*pi"]
@@ -168,7 +168,7 @@ function button_callback(button, displayBox)  % Callback function for buttons
                 newText = 'e';
             else
                     lastchar = currentText(max(1, end));
-                    if strcmp(lastchar,'*')
+                    if any(strcmp(lastchar, {'*', '+', '-','^','/','&'}))
                       newText = [currentText,"e"]
                     else
                       newText = [currentText,"*e"]

@@ -163,6 +163,18 @@ function button_callback(button, displayBox)  % Callback function for buttons
                     end
             end
             set(displayBox, 'String', newText);
+        case 'e'
+            if any(strcmp(currentText, {'Error', '0'}))
+                newText = 'e';
+            else
+                    lastchar = currentText(max(1, end));
+                    if strcmp(lastchar,'*')
+                      newText = [currentText,"e"]
+                    else
+                      newText = [currentText,"*e"]
+                    end
+            end
+            set(displayBox, 'String', newText);
         case 'Ans'
             if any(strcmp(currentText, {'Error', '0'}))
                 newText = num2str(Ans);

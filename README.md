@@ -20,7 +20,7 @@ This is a **Scientific Calculator** built using MATLAB/Octave's GUI functionalit
      `sind`, `cosd`, `tand` (for degrees).  
    - Inverse Trigonometric Functions:  
      Use the `Inv` button before the function. For example: `asin`, `acos`, `atan`.
-     Make sure to add trigonomatric functions before adding trigonometric function relation options.
+     Make sure to add trigonomatric functions before adding trigonometric function relation options and `Also add the desired operator before adding the trigonomatric function`.
      ex: `Inv` and `Deg`
 
 3. **Degree/Radian Switching**  

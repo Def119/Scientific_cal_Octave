@@ -38,12 +38,12 @@ function calculator()
 
     % Layout for buttons
     buttons = {
-        '7', '8', '9', '/', 'Ans'
-        '4', '5', '6', '*', 'sin'
-        '1', '2', '3', '-', 'cos'
-        '0', '.', '=', '+', 'tan'
-        '[', ']', ';', '>', '<'
-        '(', ')', 'C', 'CE', 'Deg'
+        ',','[','7', '8', '9', '/', 'Ans'
+        ';',']','4', '5', '6', '*', 'sin'
+        '!','(','1', '2', '3', '-', 'cos'
+        'fac',')','0', '.', '=', '+', 'tan'
+         '&','<','>','C', 'CE','^' 'Deg'
+
     };
 
     % Create buttons
@@ -53,7 +53,7 @@ function calculator()
             if ismember(buttons{i,j},{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'})
               bgColor=greyColor;
               fontColor=white;
-            elseif ismember(buttons{i,j}, {'+', '-', '*', '/', '(', ')','sin','cos','tan'})
+            elseif ismember(buttons{i,j}, {'+', '-', '*', '/', '(', ')','sin','cos','tan','[',']',';','<','>','^','fac','!','&',',',})
               bgColor =lightGrey;
               fontColor=white;
               %opColor;
@@ -118,6 +118,18 @@ function button_callback(button, displayBox)
                 else
                     newText = '!! switch to deg after trig. func. is inserted !!';
                 end
+            end
+            set(displayBox, 'String', newText);
+         case 'fac'
+            if any(strcmp(currentText, {'Error', '0'}))
+                newText = 'factorial(';
+            else
+                    lastchar = currentText(max(1, end));
+                    if strcmp(lastchar,'*')
+                      newText = [currentText,"factorial("]
+                    else
+                      newText = [currentText,"*factorial("]
+                    end
             end
             set(displayBox, 'String', newText);
         case 'Ans'

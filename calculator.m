@@ -43,7 +43,7 @@ function calculator()
         ';',']','4', '5', '6', '*', 'sin'
         'fac','(','1', '2', '3', '-', 'cos'
         'Inv',')','0', '.', '=', '+', 'tan'
-         '&','e','π','C', 'CE','^' 'Deg'
+         'log','e','π','C', 'CE','^' 'Deg'
 
     };
 
@@ -54,7 +54,7 @@ function calculator()
             if ismember(buttons{i,j},{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'})
               bgColor=greyColor;
               fontColor=white;
-            elseif ismember(buttons{i,j}, {'+', '-', '*', '/', '(', ')','[',']',';','e','π','^','fac','!','&',',',})
+            elseif ismember(buttons{i,j}, {'+', '-', '*', '/', '(', ')','[',']',';','e','π','^','fac','!','log',',',})
               bgColor =lightGrey;
               fontColor=white;
               %opColor;
@@ -63,7 +63,7 @@ function calculator()
             elseif ismember(buttons{i,j}, {'sin','cos','tan','Inv','Deg'})
               bgColor = b2;
               fontColor=white;
-            elseif
+            else
               bgColor = opColor;
               fontColor = black;
             end
@@ -172,6 +172,18 @@ function button_callback(button, displayBox)  % Callback function for buttons
                       newText = [currentText,"e"]
                     else
                       newText = [currentText,"*e"]
+                    end
+            end
+            set(displayBox, 'String', newText);
+        case 'log'
+            if any(strcmp(currentText, {'Error', '0'}))
+                newText = 'log';
+            else
+                    lastchar = currentText(max(1, end));
+                    if any(strcmp(lastchar, {'*', '+', '-','^','/','&'}))
+                      newText = [currentText,"log"]
+                    else
+                      newText = [currentText,"*log"]
                     end
             end
             set(displayBox, 'String', newText);
